@@ -1,8 +1,8 @@
-# Win10Stuff
+# WinStuff
 
-My Windows stuff
+Windows stuff. My Windows 10 and 11 stuff.
 
-This is my collection of config files, PowerShell scripts, and notes for Windows 10.
+This is my collection of config files, PowerShell scripts, and notes for Windows.
 
 ## Descriptions
 
@@ -13,6 +13,4 @@ This is my collection of config files, PowerShell scripts, and notes for Windows
 
 **Win11_Install.md**: My Windows 11 install procedure notes
 
-**PowerShell_Snippets.md**: Snippets of useful PowerShell code
-
-**lamp**: A very simple bash script for WSL (starts/stops LAMP server)
+**PowerShell_Snippets.md**: Snippets of semi-useful PowerShell code

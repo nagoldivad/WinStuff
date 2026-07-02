@@ -1,12 +1,12 @@
 # My Windows 11 install routine
 
 2024 October
-(last updated 2026 February)
+(last updated 2026 July)
 
 
 ## Introduction
 
-This document details my personal procedure to set up a Windows 11 system. This is a work in progress, as I still have a lot to learn about Windows 11. However, everything in this document has been confirmed to work properly, with the exception of the debloat scripts.
+This document details my personal procedure to set up a Windows 11 system. This is a work in progress, as I still have a lot to learn about Windows 11. However, everything in this document has been confirmed to work properly, with exceptions noted.
 
 
 ## Optional: with a fresh install, use a local account
@@ -48,22 +48,28 @@ Verify the install with ```$PSVersionTable.PSVersion```
 $apps = @(
   "Notepad++.Notepad++",
   "Mozilla.Firefox",
-  "Google.Chrome",
+  "eloston.ungoogled-chromium",
   "Git.Git",
-  "Microsoft.VisualStudioCode",
   "Microsoft.PowerToys",
   "VideoLAN.VLC",
   "7zip.7zip",
   "OpenJS.NodeJS",
   "SumatraPDF.SumatraPDF",
   "Nikkho.FileOptimizer",
-  "Flywheel.Local",
   "AntibodySoftware.WizTree",
   "GIMP.GIMP",
   "REALiX.HWiNFO",
-  "Dropbox.Dropbox",
   "Amazon.Kindle",
-  "Amazon.SendToKindle"
+  "Amazon.SendToKindle",
+  "REALiX.HWiNFO",
+  "CPUID.CPU-Z",
+  "CrystalDewWorld.CrystalDiskInfo",
+  "JAMSoftware.TreeSize.Free",
+  "voidtools.Everything",
+  "File-New-Project.EarTrumpet",
+  "DuongDieuPhap.ImageGlass",
+  "PeterPawlowski.foobar2000",
+  "angryziber.AngryIPScanner"
 )
 
 foreach ($app in $apps) {
@@ -89,19 +95,14 @@ foreach ($app in $apps) {
 If you have an iPhone you can connect it to Windows 11 by using the Phone Link app. Learn how to install and set up the Phone Link app [here](https://www.microsoft.com/en-us/windows/sync-across-your-devices)
 
 
-## Optional: Disable File Explorer ads
-
-In File Explorer, open the "Options" and select the "View" tab, and deselect "Show sync provider notifications"
-
-
-## Install WSL
+## Optional: Install WSL
 
 See [How to install Linux on Windows with WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Microsoft Learn. To install debian use an admin PowerShell: ```wsl --install -d debian```
 
 
 ## Debloat stuff
 
-I haven't been using debloat scripts or apps on Windows 11, I've only used O & O Shutup 11, but here are some options if/when I decide to...
+I haven't been using debloat scripts or apps on Windows 11 other than <strong>O & O Shutup 11</strong>, so that's the only debloater I can vouch for.
 
 * https://www.oo-software.com/en/shutup10
 * https://github.com/Raphire/Win11Debloat
@@ -110,7 +111,7 @@ I haven't been using debloat scripts or apps on Windows 11, I've only used O & O
 
 ## Remove ads from File Explorer
 
-Disable File Explorer ads: In File Explorer, open the "Options" and select the "View" tab, and deselect "Show sync provider notifications"
+In File Explorer, open the "Options" and select the "View" tab, and deselect "Show sync provider notifications"
 
 
 ## Settings that can speed up Windows 11
@@ -133,10 +134,10 @@ win+r `services.msc`
 * Windows Error Reporting Service
 * Diagnostic Policy Service
 
+Other services to disable:
 
 win+r `msconfig`
 
 Disable whichever services you find offensive or pointless
-
 
 Taken from this video: https://www.youtube.com/watch?v=RMS4-05vQxY
