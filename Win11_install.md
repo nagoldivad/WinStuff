@@ -1,15 +1,15 @@
 # My Windows 11 install routine
 
 2024 October
-(last updated 2026 July)
+(last updated 2026 November)
 
 
 ## Introduction
 
-This document details my personal procedure to set up a Windows 11 system. This is a work in progress, as I still have a lot to learn about Windows 11. However, everything in this document has been confirmed to work properly, with exceptions noted.
+This document details my personal procedure to set up a Windows 11 system. This is a work in progress. Everything in this document has been confirmed to work properly on my systems, with exceptions noted.
 
 
-## Optional: with a fresh install, use a local account
+## With a fresh install, use a local account
 
 The following comes from [an article on pureinfotech.com](https://pureinfotech.com/bypass-internet-connection-install-windows-11/). I have used this procedure and can comfirm that it works well.
 
@@ -30,52 +30,25 @@ The following comes from [an article on pureinfotech.com](https://pureinfotech.c
 
 ## Install WinGet
 
-Documentation and download is on [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
+WinGet is now included by default in Win 11 Home and Pro. Documentation and download is on [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
 
-Note: WinGet is now included by default in Win 11 Home and Pro.
+Use a previously exported JSON list of apps to install everything.
 
+```
+winget export -o apps.json
+winget import -i apps.json
+```
 
-## Install PowerShell 7
+Don't forget to install PowerShell 7
 
 ```winget install Microsoft.PowerShell```
 
 Verify the install with ```$PSVersionTable.PSVersion```
 
 
-## Use WinGet to install these apps
+## Install WSL
 
-```
-$apps = @(
-  "Notepad++.Notepad++",
-  "Mozilla.Firefox",
-  "eloston.ungoogled-chromium",
-  "Git.Git",
-  "Microsoft.PowerToys",
-  "VideoLAN.VLC",
-  "7zip.7zip",
-  "OpenJS.NodeJS",
-  "SumatraPDF.SumatraPDF",
-  "Nikkho.FileOptimizer",
-  "AntibodySoftware.WizTree",
-  "GIMP.GIMP",
-  "REALiX.HWiNFO",
-  "Amazon.Kindle",
-  "Amazon.SendToKindle",
-  "REALiX.HWiNFO",
-  "CPUID.CPU-Z",
-  "CrystalDewWorld.CrystalDiskInfo",
-  "JAMSoftware.TreeSize.Free",
-  "voidtools.Everything",
-  "File-New-Project.EarTrumpet",
-  "DuongDieuPhap.ImageGlass",
-  "PeterPawlowski.foobar2000",
-  "angryziber.AngryIPScanner"
-)
-
-foreach ($app in $apps) {
-    winget install -e --id $app
-}
-```
+See [How to install Linux on Windows with WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Microsoft Learn. To install debian use an admin PowerShell: ```wsl --install -d debian```
 
 
 ## Move taskbar to left side of screen
@@ -85,7 +58,7 @@ foreach ($app in $apps) {
 3. Then click "Restart File Explorer"
 
 
-## Optional: Install Intel Arc Control
+## Install Intel Arc Control
 
 [Download from Intel's website](https://www.intel.com/content/www/us/en/products/docs/discrete-gpus/arc/software/arc-control.html)
 
@@ -95,18 +68,14 @@ foreach ($app in $apps) {
 If you have an iPhone you can connect it to Windows 11 by using the Phone Link app. Learn how to install and set up the Phone Link app [here](https://www.microsoft.com/en-us/windows/sync-across-your-devices)
 
 
-## Optional: Install WSL
-
-See [How to install Linux on Windows with WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Microsoft Learn. To install debian use an admin PowerShell: ```wsl --install -d debian```
-
-
 ## Debloat stuff
 
-I haven't been using debloat scripts or apps on Windows 11 other than <strong>O & O Shutup 11</strong>, so that's the only debloater I can vouch for.
+I haven't been using debloat scripts or apps on Windows 11 other than [O & O Shutup 11](https://www.oo-software.com/en/shutup10), so that's the only debloater I can vouch for. Here are two others I've tried in the past and seem to work well:
 
-* https://www.oo-software.com/en/shutup10
 * https://github.com/Raphire/Win11Debloat
 * https://christitus.com/windows-tool/
+
+Sometimes the debloat tools will have to be run again after a Windows update.
 
 
 ## Remove ads from File Explorer
@@ -124,7 +93,7 @@ Right-click on Local Disk (C:) drive in File Explorer -> Properties -> Uncheck "
 
 ### Services to disable
 
-win+r `services.msc`
+win+r then `services.msc`
 
 * Connected User Experience and Telemetry
 * Device Management Wireless Application Protocol (WAP) Push message Routing Service
@@ -134,10 +103,11 @@ win+r `services.msc`
 * Windows Error Reporting Service
 * Diagnostic Policy Service
 
-Other services to disable:
+This list of services to disable is taken from [this video by Brett In Tech](https://www.youtube.com/watch?v=RMS4-05vQxY). Note it may be best to prefer "Manual" over "Disabled", as this requests the service not start unless requested, which saves resources without breaking dependencies. Don’t disable services you don’t understand, especially anything related to security, networking, Windows Update, or the Windows Defender family.
 
-win+r `msconfig`
+Another tool to view services:
 
-Disable whichever services you find offensive or pointless
+win+r then `msconfig`
 
-Taken from this video: https://www.youtube.com/watch?v=RMS4-05vQxY
+Although `msconfig` can be used to disable services, it's best used for troubleshooting -- it only does on/off with no Delayed or Manual option. It maintains a record of all services disabled and can easily restore to previous state.
+
