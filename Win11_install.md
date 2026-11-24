@@ -58,6 +58,31 @@ See [How to install Linux on Windows with WSL](https://learn.microsoft.com/en-us
 3. Then click "Restart File Explorer"
 
 
+## Remove OneDrive
+
+Go to Settings → Apps → Installed apps → Microsoft OneDrive → Uninstall, or run this in a terminal:
+
+```winget uninstall Microsoft.OneDrive```
+
+Delete the leftover `C:\Users\<you>\OneDrive` folder once you've confirmed your files are safe elsewhere.
+
+Note, any files stored in OneDrive should be moved first. Make sure files are local. Anything showing a cloud icon (online-only) in File Explorer should be right-clicked → Always keep on this device, or copied to a local folder first.
+
+
+## Hide some of the "Known Folders"
+
+```
+cd $env:USERPROFILE
+attrib +h Favorites
+attrib +h Links
+attrib +h Contacts
+attrib +h Searches
+attrib +h "Saved Games"
+```
+
+They disappear from view, and nothing complains if an app wants them later. As long as "Show hidden items" is off in Explorer, you'll never see them.
+
+
 ## Install Intel Arc Control
 
 [Download from Intel's website](https://www.intel.com/content/www/us/en/products/docs/discrete-gpus/arc/software/arc-control.html)
